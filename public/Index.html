@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="style.css" rel="stylesheet"/>
+  <title>Calendar</title>
+</head>
+<body>
+  <div id="all">
+    <div id="addcard" v-show="pluscard">
+      <div>
+        <ul>
+          <li class="bad" v-for="badmeeting in badmeetings">
+            {{badmeeting}}
+          </li>
+      </ul>
+    </div>
+      <h3> Add Schedule </h3>
+      Name:
+      <select v-model="newmeeting.fname">
+       <option v-for="item in items"> {{item.clientname}} </option>
+      </select>
+      <input type="text" name="name" value="" v-model="newmeeting.fname"> <br><br>
+      Time: <br>
+      <input type="text" name="Time" value="" v-model="newmeeting.atime">
+      <button id="submit" v-on:click="send"> Submit </button>
+      <button id="submit" v-on:click="addcard"> Cancel </button>
+    </div>
+      <div id="Calendar">
+
+        <div id="head">
+          <h1 id="cal"> Calendar </h1>
+          <h2 id="date"> {{ myDate }} </h2>
+        </div>
+
+        <div id="days">
+        <div id="one">
+          <p>Mon</p>
+          <ul id="meetingbox" v-for="meeting in meetings">
+            <li>
+              {{ meeting.fname }},
+              {{ meeting.atime }}
+          </li>
+          <button id="caladd" v-on:click="end(meeting)"> Delete </button>
+          <!-- <button id="caladd" v-on:click="update(item)"> Update </button> -->
+        </ul>
+          <div class="circle" v-on:click="addcard(1)">
+            <p class="plus">+</p>
+          </div>
+        </div>
+
+        <div id="two">
+          <p>Tues</p>
+          <div class="circle" v-on:click="addcard(2)">
+            <p class="plus">+</p>
+          </div>
+        </div>
+
+        <div id="three">
+          <p>Wed</p>
+          <div class="circle" v-on:click="addcard(3)">
+            <p class="plus">+</p>
+          </div>
+        </div>
+
+        <div id="four">
+          <p>Thur</p>
+          <div class="circle" v-on:click="addcard(4)">
+            <p class="plus">+</p>
+          </div>
+        </div>
+
+        <div id="five">
+          <p>Fri</p>
+          <div class="circle" v-on:click="addcard(5)">
+            <p class="plus">+</p>
+          </div>
+        </div>
+
+        <div id="six">
+          <p>Sat</p>
+          <div class="circle" v-on:click="addcard(6)">
+            <p class="plus">+</p>
+          </div>
+        </div>
+
+        <div id="seven">
+          <p>Sun</p>
+          <div class="circle" v-on:click="addcard(7)">
+            <p class="plus">+</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div id="current">
+        <h2 id="events"> Current Events </h2>
+      </div>
+
+      <div id="cards">
+        <div id="add">
+          <p> Add clients </p>
+          <button id="addbutton" v-on:click="dropdown"> Add </button>
+        </div>
+
+        <div id="view">
+          <p> View Clients </p>
+          <button id="allclients" v-on:click="peoplecard"> My Clients </button>
+        </div>
+    </div>
+
+
+    <div id="cards2">
+    <div id="newclient" v-show="Dison">
+      <div>
+        <ul>
+          <li class="bad" v-for="wrong in wrongs">
+            {{wrong}}
+          </li>
+      </ul>
+      </div>
+      <h3> New client </h3>
+      <label for="clientname">Name: <label> <input id="clientname" type="text" name="name" value="" v-model="newitem.clientname" v-on:blur="checkform()"> <br><br>
+      <label for="address">Address: <label> <input id="address" type="text" name="address" value="" v-model="newitem.address" v-on:blur="checkform()"><br><br>
+      <label for="phone">Phone: <label> <input id="phone" type="text" name="phone" value="" v-model="newitem.phone" v-on:blur="checkform()"><br><br>
+      <label for="email">Email: <label><input id="email" type="text" name="email" value="" v-model="newitem.email" v-on:blur="checkform()"><br>
+      <button id="submit" v-on:click="submit"> Submit </button>
+      <button id="submit" v-on:click="dropdown"> Cancel </button>
+    </div>
+
+
+
+    <div id="showclients" v-show="people">
+      <div id="ex" v-on:click="peoplecard">
+        <p>X</p>
+      </div>
+      <ul v-for="item in items">
+        <li>
+          {{ item.clientname }},
+          {{ item.phone }}
+      </li>
+      <button id="submit" v-on:click="remove(item)"> Delete </button>
+      <button id="submit" v-on:click="autofill(item)"> Update </button>
+    </ul>
+    </div>
+  </div>
+
+  <div id="newupdate" v-show="edit">
+    <h3> Edit client </h3>
+    Name: <input type="text" name="name" value="" v-model="updateitem.clientname"> <br><br>
+    Address: <input type="text" name="address" value="" v-model="updateitem.address"><br><br>
+    Phone: <input type="text" name="phone" value="" v-model="updateitem.phone"><br><br>
+    Email: <input type="text" name="email" value="" v-model="updateitem.email"><br>
+    <button id="submit" v-on:click="updateclient()"> Submit </button>
+    <button id="submit" v-on:click="edit = !edit"> Cancel </button>
+
+  </div>
+
+</div>
+
+<script src="vueDevelopment.js"></script>
+<script src="midtermvue.js"></script>
+</body>
+</html>

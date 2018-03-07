@@ -1,0 +1,19 @@
+{
+  "name": "midterm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "midtermvue.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "9.3.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^5.0.9",
+    "node": "^9.7.0"
+  }
+}
